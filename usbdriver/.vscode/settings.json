@@ -1,7 +1,0 @@
-{
-  "files.associations": {
-    "mutex.h": "c",
-    "ch9.h": "c",
-    "init.h": "c"
-  }
-}
