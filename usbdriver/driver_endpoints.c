@@ -288,5 +288,5 @@ static void __exit usb_nr_exit(void)
 module_init(usb_nr_init);
 module_exit(usb_nr_exit);
 
-MODULE_AUTHOR("Nicolas Delanoue & Remy Guyonneau\n");
+MODULE_AUTHOR("Ayush Abrol\n");
 MODULE_LICENSE("GPL");

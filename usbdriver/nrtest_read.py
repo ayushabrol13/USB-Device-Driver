@@ -1,5 +1,3 @@
-# Author : remy.guyonneau@univ-angers.fr # Date : 12/05/2016 # Version : 0.1 # MaJ : -
-# this python programm allows to get one data buffer from the usb device
 
 import struct
 import os

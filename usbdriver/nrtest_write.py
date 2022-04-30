@@ -1,7 +1,3 @@
-# Author : remy.guyonneau@univ-angers.fr # Date : 12/05/2016 # Version : 0.1 # MaJ : -
-# this python programm allows to send one usb buffer to the usb device
-# to convert this usb buffer to a CAN message, a protocol needs to be used
-# this communication protocol is detailed at http://www.harshbutfair.org/software/canboard.html
 
 import struct
 import os
