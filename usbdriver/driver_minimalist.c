@@ -1,11 +1,4 @@
 /*
- * The minimalist code is mostly from SolidusCode "Linux Kernel Module
- * Programming - USB Device Driver 02" the video can be found here
- * https://www.youtube.com/watch?v=5IDL070RtoQ (09/05/2016)
- *
- * The comment informations are from
- * http://www.oreilly.com/openbook/linuxdrive3/book (09/05/2016)
- * Here is the using Makefile to compile the driver:
  *
  * ------------------------------------------------------------
  *               MAKEFILE TO COMPILE THE DRIVER
