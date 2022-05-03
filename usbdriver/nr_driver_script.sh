@@ -42,10 +42,10 @@ for (( i=10; i>0; i--)); do
 	if ((i < 10 )); then
 		printf " " # to occupy the same space in the display with two and one digit
 	fi
-	printf "$i] \ttime to plug your MCP2515 demo board device"
+	printf "$i] \ttime to plug your device"
 	wait
 done
-printf "\r[xx]  \ttime to plug your MCP2515 demo board device\n"
+printf "\r[xx]  \ttime to plug your device\n"
 
 # and we load the usbhid driver back as it may be used for
 # the mouse and keyboard

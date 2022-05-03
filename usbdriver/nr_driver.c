@@ -1,6 +1,5 @@
 /*
 
-
  * Here is the using Makefile to compile the driver:
  * ------------------------------------------------------------
  *               MAKEFILE TO COMPILE THE DRIVER
@@ -64,7 +63,7 @@
 #include <asm/uaccess.h> // copy_to_user(), copy_from_user()
 #include <linux/wait.h>  // wait_queue_head_t structure
 
-// vendor and product ids of the MCP2515 Microship Demo board
+// vendor and product ids 
 #define VENDOR_ID 0x04d8
 #define PRODUCT_ID 0x0070
 #define USB_MINOR_BASE 1
@@ -73,7 +72,7 @@
 static DEFINE_MUTEX(disconnect_mutex);
 
 //------------------------------------------------------------
-//             STUCT CORRESPONDING TO THE DEVICE
+//             STRUCT CORRESPONDING TO THE DEVICE
 //------------------------------------------------------------
 struct usb_nr
 {
@@ -85,25 +84,26 @@ struct usb_nr
     struct usb_endpoint_descriptor *int_out_endpoint;
 
     // the urb to read data with
-    //   memory allocated in probe()
-    //   initialized in open()
-    //   used in read()
+    // memory allocated in probe()
+    // initialized in open()
+    // used in read()
     struct urb *int_in_urb;
 
     // the urb to write data with
-    //   memory allocated in probe()
-    //   initialized in open()
-    //   used in write()
+    // memory allocated in probe()
+    // initialized in open()
+    // used in write()
     struct urb *int_out_urb;
 
-    // the usb device for this device, used to intialize the urb
-    //   A USB device driver commonly has to convert data from a given
-    //   struct usb_interface structure into a struct usb_device structure
-    //   that the USB core needs for a wide range of function calls. To do
-    //   this, the function interface_to_usbdev is provided. Hopefully,
-    //   in the future, all USB calls that currently need a struct
-    //   usb_device will be converted to take a struct usb_interface
-    //   parameter and will not require the drivers to do the conversion.
+    //  The usb device for this device, used to intialize the urb
+    //  A USB device driver commonly has to convert data from a given
+    //  struct usb_interface structure into a struct usb_device structure
+    //  that the USB core needs for a wide range of function calls. To do
+    //  this, the function interface_to_usbdev is provided. Hopefully,
+    //  in the future, all USB calls that currently need a struct
+    //  usb_device will be converted to take a struct usb_interface
+    //  parameter and will not require the drivers to do the conversion.
+    
     struct usb_device *usbdev;
 
     // the buffer to receive data (from the device through the urb in)
@@ -149,7 +149,7 @@ static struct usb_driver nr_driver;
 
 //                            OPEN
 //------------------------------------------------------------
-// Though this is always the first operation performed on the device file, the
+//  Though this is always the first operation performed on the device file, the
 //  driver is not required to declare a corresponding method. If this entry is
 //  NULL, opening the device always succeeds, but your driver isn't notified.
 //
@@ -162,10 +162,12 @@ static struct usb_driver nr_driver;
 //  interest for writing driver code:
 //
 //  The *file* structure represents an open file. (It is not specific to device
-//      drivers; every open file in the system has an associated struct file in
-//      kernel space.) It is created by the kernel on open and is passed to any
-//      function that operates on the file, until the last close. After all
-//      instances of the file are closed, the kernel releases the data structure
+//  drivers; every open file in the system has an associated struct file in
+//  kernel space.) It is created by the kernel on open and is passed to any
+//  function that operates on the file, until the last close. After all
+//  instances of the file are closed, the kernel releases the data structure
+
+
 static int nr_open(struct inode *inode, struct file *filp)
 {
     // define a pointer over a device struct (usb_ur)
@@ -758,6 +760,7 @@ static struct usb_driver nr_driver = {
 // To register the struct usb_driver with the USB core, a call to
 //   usb_register_driver is made with a pointer to the struct usb_driver. This is
 //   traditionally done in the module initialization code for the USB driver:
+
 static int __init usb_nr_init(void)
 {
     int retval = -1;
@@ -773,6 +776,8 @@ static int __init usb_nr_init(void)
 //   usb_deregister_driver. When this call happens, any USB interfaces that were
 //   currently bound to this driver are disconnected, and the disconnect function
 //   is called for them.
+
+
 static void __exit usb_nr_exit(void)
 {
     usb_deregister(&nr_driver);
