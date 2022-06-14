@@ -55,9 +55,9 @@ Here are the steps we took building our driver:
 
 ## How to compile and load the driver
 
-Use make command to compile the makefile provided for the nr_driver.c file and build all dependencies and modules to compile the main driver code.
-To load the module : sudo insmod nr_driver.ko
-To unload the module : sudo rmmod nr_driver
-To check if the module has been loaded: lsmod
-To check the logs from the kernel: dmesg
-To check the logs from the kernel (adding the NR filter): dmesg | grep _NR_
+* Use make command to compile the makefile provided for the nr_driver.c file and build all dependencies and modules to compile the main driver code.
+* To load the module : sudo insmod nr_driver.ko
+* To unload the module : sudo rmmod nr_driver
+* To check if the module has been loaded: lsmod
+* To check the logs from the kernel: dmesg
+* To check the logs from the kernel (adding the NR filter): dmesg | grep _NR_
