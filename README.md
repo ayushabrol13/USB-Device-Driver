@@ -9,55 +9,72 @@ We only tested it in simple cases (only one device plugged in, only one program 
 
 Here is a list of the presented files: 
 
-1. NR Driver
-    1. nr_driver.c
-    2. Makefile
-    3. nr_driver_script.sh
-    4. nrtest_read.py
-    5. nrtest_write.py
+- NR Driver
+    - nr_driver.c
+    - makefile
+    - nr_driver_script.sh
+    - nrtest_read.py
+    - nrtest_write.py
 
-2. Step by step
-    1. Minimalist driver
-    2. Finding endpoints
-    3. Read function
-    4. Read/write functions
-    5. Read using urbs
+- Step by step
+    - Minimalist driver
+    - Finding endpoints
+    - Read function
+    - Read/write functions
+    - Read using urbs
 
 
 ## NR driver
 
 This corresponds to the source code of our driver for the device.
 
-1. nr_driver.c: the c code of the driver.
+- nr_driver.c: the c code of the driver.
 
-2. Makefile: the makefile to compile the driver.
+- Makefile: the makefile to compile the driver.
 
-3. nr_driver_script.sh: A script to compile and load the driver into the kernel. Note that the usbhid driver used to claim our device before our own driver. To avoid this, the script unloads the usbhid driver giving us time to plug our device and then reload the usbhid driver (as in our case it is needed for the mouse and the keyboard...).This is the only solution we have so far.
+- nr_driver_script.sh: A script to compile and load the driver into the kernel. Note that the usbhid driver used to claim our device before our own driver. To avoid this, the script unloads the usbhid driver giving us time to plug our device and then reload the usbhid driver (as in our case it is needed for the mouse and the keyboard...).This is the only solution we have so far.
 
-4. nrtest_read.py: A python example program using the driver to read values from the device. Note that this python program needs to be executed as root (using sudo for instance) in order to open the corresponding /dev file (created by the driver while plugging the device).
+- nrtest_read.py: A python example program using the driver to read values from the device. Note that this python program needs to be executed as root (using sudo for instance) in order to open the corresponding /dev file (created by the driver while plugging the device).
 
-5. nrtest_write.py: A python example program using the driver to write values to the device. Note that this python program needs to be executed as root (using sudo for instance) in order to open the corresponding /dev file (created by the driver while pluggin the device). Using an oscilloscope it is possible to see the sent CAN data over the CAN bus. 
+- nrtest_write.py: A python example program using the driver to write values to the device. Note that this python program needs to be executed as root (using sudo for instance) in order to open the corresponding /dev file (created by the driver while pluggin the device). Using an oscilloscope it is possible to see the sent CAN data over the CAN bus. 
 
 
 ## Step by step
 
 Here are the steps we took building our driver:
 
-1. driver_minimalist.c: This is a minimalist driver that does nothing (no read neither write functions to communicate with the device) But it is a good starting point to write a more useful driver.
+- driver_minimalist.c: This is a minimalist driver that does nothing (no read neither write functions to communicate with the device) But it is a good starting point to write a more useful driver.
 
-2. driver_endpoints.c: This driver automatically searches the endpoints (in and out) of the device.
+- driver_endpoints.c: This driver automatically searches the endpoints (in and out) of the device.
 
-3. driver_read.c: This driver allows the read function. Note that it does not communicate with the device yet! This is just to test the communication between the user space and the kernel!
+- driver_read.c: This driver allows the read function. Note that it does not communicate with the device yet! This is just to test the communication between the user space and the kernel!
 
-4. driver_read_write.c: This driver allows the read and write functions. Note that it does not communicate with the device yet! This is just to test the communication between the user space and the kernel!
+- driver_read_write.c: This driver allows the read and write functions. Note that it does not communicate with the device yet! This is just to test the communication between the user space and the kernel!
 
-5. driver_read_urb.c: Finally this driver communicates with the device througt URBs (USB Data Block). We are now able to communicate from the user space to the kernel AND from the kernel to the usb device. For the urb writing function, you can check our final driver.
+- driver_read_urb.c: Finally this driver communicates with the device througt URBs (USB Data Block). We are now able to communicate from the user space to the kernel AND from the kernel to the usb device. For the urb writing function, you can check our final driver.
 
 ## How to compile and load the driver
 
 * Use make command to compile the makefile provided for the nr_driver.c file and build all dependencies and modules to compile the main driver code.
-* To load the module : sudo insmod nr_driver.ko
-* To unload the module : sudo rmmod nr_driver
-* To check if the module has been loaded: lsmod
-* To check the logs from the kernel: dmesg
-* To check the logs from the kernel (adding the NR filter): dmesg | grep _NR_
+
+            make
+            
+* To load the module : 
+            
+            sudo insmod nr_driver.ko
+
+* To unload the module : 
+
+            sudo rmmod nr_driver
+
+* To check if the module has been loaded: 
+            
+            lsmod
+
+* To check the logs from the kernel: 
+
+            dmesg
+
+* To check the logs from the kernel (adding the NR filter): 
+            
+            dmesg | grep _NR_
