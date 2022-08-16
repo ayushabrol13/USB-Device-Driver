@@ -19,13 +19,14 @@ Here is a list of the presented files:
   - nrtest_write.py
 
 - Step by step
+
   - Minimalist driver
   - Finding endpoints
   - Read function
   - Read/write functions
   - Read using urbs
 
-## NR driver
+## NR Driver
 
 This corresponds to the source code of our driver for the device.
 
