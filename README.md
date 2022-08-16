@@ -4,7 +4,8 @@ The idea was to develop a Linux Usb Device Driver.
 
 Some useful resources we used:
 
-We present different versions of the driver we made from the most basic and useless (but understanble) one to the final one (NR Driver).Note that this driver, as we wanted it to be as "simple" as possible, does not manage a lot of exceptions and possible errors! Be careful if you want to use it.
+We present different versions of the driver we made from the most basic and useless (but understanble) one to the final one (NR Driver). 
+Note that this driver, as we wanted it to be as "simple" as possible, does not manage a lot of exceptions and possible errors! Be careful if you want to use it.
 We only tested it in simple cases (only one device plugged in, only one program trying to communicate at the same time)
 
 Here is a list of the presented files: 
